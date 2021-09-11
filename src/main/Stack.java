@@ -4,13 +4,13 @@ package main;
 
 import java.util.EmptyStackException;
 
-public class Stacks {
+public class Stack {
 
     private static class Node {
         private int data;
         private Node next;
 
-        public Node(int data) {
+        Node(int data) {
             this.data = data;
         }
     }
