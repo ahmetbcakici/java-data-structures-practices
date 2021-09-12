@@ -33,6 +33,23 @@ public class HashTableTest {
     }
 
     @Test
+    public void RemoveByKey() {
+        hashTable.put("John Smith", "521-1234");
+        hashTable.put("Ted Baker", "418-4165");
+        hashTable.put("Sam Doe", "521-5030");
+        hashTable.put("Sandra Dee", "521-9655");
+
+        hashTable.remove("Sandra Dee");
+        hashTable.remove("John Smith");
+        hashTable.remove("Ted Baker");
+
+        Assert.assertEquals(null, hashTable.get("John Smith"));
+        Assert.assertEquals(null, hashTable.get("Ted Baker"));
+        Assert.assertEquals("521-5030", hashTable.get("Sam Doe"));
+        Assert.assertEquals(null, hashTable.get("Sandra Dee"));
+    }
+
+    @Test
     public void Empty() {
         Assert.assertEquals(null, hashTable.get("Ted Baker"));
         Assert.assertEquals(null, hashTable.get("Tim Lee"));

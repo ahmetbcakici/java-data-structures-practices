@@ -2,7 +2,7 @@ package main;
 
 public class HashTable {
     private int INITIAL_SIZE = 16;
-    private HashEntry[] data; // LinkedList
+    private HashEntry[] data; // kinda array of LinkedList
 
     private static class HashEntry {
         private String key;
@@ -53,11 +53,28 @@ public class HashTable {
         return null;
     }
 
+    public void remove(String key) {
+        var index = getIndex(key);
+
+        HashEntry entries = data[index];
+
+        if (entries.key.equals(key)) {
+            data[index] = entries.next;
+            return;
+        }
+
+        while (entries.next != null) {
+            if (entries.next.key.equals(key)) {
+                entries.next = entries.next.next;
+                return;
+            }
+            entries = entries.next;
+        }
+    }
+
     private int getIndex(String key) {
-        // Get the hash code
         int hashCode = key.hashCode();
 
-        // Convert to index
         int index = (hashCode & 0x7fffffff) % INITIAL_SIZE;
 
         // Hack to force collision for testing
@@ -73,7 +90,7 @@ public class HashTable {
         int bucket = 0;
         StringBuilder hashTableStr = new StringBuilder();
         for (HashEntry entry : data) {
-            if(entry == null) {
+            if (entry == null) {
                 continue;
             }
             hashTableStr.append("\n bucket[")
@@ -82,7 +99,7 @@ public class HashTable {
                     .append(entry.toString());
             bucket++;
             HashEntry temp = entry.next;
-            while(temp != null) {
+            while (temp != null) {
                 hashTableStr.append(" -> ");
                 hashTableStr.append(temp.toString());
                 temp = temp.next;
