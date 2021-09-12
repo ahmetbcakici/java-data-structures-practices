@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 public class HashTable {
     private int INITIAL_SIZE = 16;
     private HashEntry[] data; // kinda array of LinkedList
@@ -72,6 +74,22 @@ public class HashTable {
         }
     }
 
+    public ArrayList<String> keys() {
+        ArrayList<String> keys = new <String>ArrayList();
+
+        for (int i = 0; i < INITIAL_SIZE; i++) {
+            HashEntry entries = data[i];
+
+            while (entries != null) {
+                keys.add(entries.key);
+
+                entries = entries.next;
+            }
+        }
+
+        return keys;
+    }
+
     private int getIndex(String key) {
         int hashCode = key.hashCode();
 
@@ -107,5 +125,4 @@ public class HashTable {
         }
         return hashTableStr.toString();
     }
-
 }

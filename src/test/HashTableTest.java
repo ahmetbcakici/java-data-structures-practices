@@ -66,4 +66,22 @@ public class HashTableTest {
         Assert.assertEquals("521-9655", hashTable.get("Sandra Dee"));
         Assert.assertEquals(null, hashTable.get("Tim Lee"));
     }
+
+    @Test
+    public void GetKeys() {
+        hashTable.put("John Smith", "521-1234");
+        hashTable.put("Lisa Smith", "521-8976");
+        hashTable.put("Sam Doe", "521-5030");
+        hashTable.put("Sandra Dee", "521-9655");
+        hashTable.put("Ted Baker", "418-4165");
+
+        var keys = hashTable.keys();
+
+        Assert.assertEquals(true, keys.contains("John Smith"));
+        Assert.assertEquals(true, keys.contains("Lisa Smith"));
+        Assert.assertEquals(true, keys.contains("Sam Doe"));
+        Assert.assertEquals(true, keys.contains("Sandra Dee"));
+        Assert.assertEquals(true, keys.contains("Ted Baker"));
+        Assert.assertEquals(false, keys.contains("John Wick"));
+    }
 }
