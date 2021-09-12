@@ -1,4 +1,4 @@
-package datastructures;
+package test;
 
 import main.HashTable;
 import org.junit.Assert;
